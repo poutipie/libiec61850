@@ -147,7 +147,7 @@ EthernetHandleSet_addSocket(EthernetHandleSet self, const EthernetSocket sock)
         int i = self->nhandles++;
 
         self->handles = (HANDLE *) realloc(self->handles, self->nhandles * sizeof(HANDLE));
-            
+
         self->handles[i] = pcap_getevent(sock->rawSocket);
     }
 #endif
@@ -295,8 +295,8 @@ getAdapterMacAddress(char* pcapAdapterName, uint8_t* macAddress)
                         macAddress[i] = pAddress->PhysicalAddress[i];
                     }
                 }
-
-                printf("\n");
+                if (DEBUG_HAL_ETHERNET)
+                    printf("\n");
             }
 
             pAddress = pAddress->Next;
